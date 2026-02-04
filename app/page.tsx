@@ -10,16 +10,21 @@ export default function GFlowLanding() {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 bg-gflow-beige/90 backdrop-blur-md border-b border-gflow-blue/10">
         <nav className="container h-20 flex justify-between items-center">
-          <div className="text-2xl font-bold text-gflow-blue">
-            GFLOW <span className="font-normal text-gflow-cyan">Software</span>
+          <div className="flex items-center group cursor-pointer">
+            <div className="relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-gflow-blue to-gflow-cyan rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-glow"></div>
+              <div className="relative text-2xl font-bold text-gflow-blue bg-gflow-beige px-4 py-1 rounded-lg">
+                Gflow<span className="text-gflow-cyan italic">Erp</span>
+              </div>
+            </div>
           </div>
 
-          <ul className="hidden md:flex space-x-8 text-sm font-semibold text-gflow-blue">
+          <ul className="hidden md:flex items-center space-x-8 text-sm font-semibold text-gflow-blue">
             <li><a href="#inicio" className="hover:text-gflow-cyan transition-colors">Inicio</a></li>
             <li><a href="#beneficios" className="hover:text-gflow-cyan transition-colors">Beneficios</a></li>
             <li><a href="#modulos" className="hover:text-gflow-cyan transition-colors">Módulos</a></li>
             <li><a href="#sectores" className="hover:text-gflow-cyan transition-colors">Sectores</a></li>
-            <li><a href="#contacto" className="bg-gflow-blue text-white px-5 py-2 rounded-lg hover:bg-gflow-blue-light transition-all">Contacto</a></li>
+            <li><a href="#contacto" className="bg-gflow-blue text-white px-5 py-2 rounded-lg hover:bg-gflow-blue-light transition-all shadow-md">Contacto</a></li>
           </ul>
 
           <button className="md:hidden text-gflow-blue" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -190,22 +195,31 @@ export default function GFlowLanding() {
           </div>
         </section>
 
-        {/* 6. Testimonios */}
-        <section id="clientes" className="py-24 bg-gflow-beige-dark/30">
-          <div className="container">
-            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-              <h2 className="text-4xl">Confían en nosotros</h2>
-              <p className="text-lg text-gflow-text">Empresas que han transformado su gestión con GFLOW.</p>
+        {/* 6. Clientes - Infinite Marquee */}
+        <section id="clientes" className="py-24 bg-gflow-beige-dark/30 overflow-hidden">
+          <div className="container mb-12">
+            <div className="text-center max-w-3xl mx-auto space-y-4">
+              <h2 className="text-4xl">Empresas que confían en GFlow</h2>
+              <p className="text-lg text-gflow-text">Una trayectoria sólida respaldada por líderes en cada sector.</p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {TESTIMONIOS.map((t, i) => (
-                <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gflow-blue/5">
-                  <h4 className="text-xl font-bold text-gflow-blue">{t.nombre}</h4>
-                  <span className="text-xs font-bold text-gflow-cyan uppercase tracking-wider block mb-4">{t.rubro}</span>
-                  <p className="text-gflow-text italic leading-relaxed">"{t.quote}"</p>
+          </div>
+
+          <div className="relative">
+            <div className="marquee-content py-4">
+              {[...TESTIMONIOS, ...TESTIMONIOS].map((t, i) => (
+                <div key={i} className="mx-4 bg-white p-6 rounded-2xl shadow-sm border border-gflow-blue/5 min-w-[300px] flex flex-col justify-between hover:border-gflow-cyan/30 transition-colors">
+                  <div>
+                    <h4 className="text-lg font-bold text-gflow-blue line-clamp-1">{t.nombre}</h4>
+                    <span className="text-[10px] font-bold text-gflow-cyan uppercase tracking-widest block mb-2">{t.rubro}</span>
+                  </div>
+                  <div className="text-gflow-blue/20 text-4xl self-end leading-none">"</div>
                 </div>
               ))}
             </div>
+
+            {/* Gradient overlays for smooth fading */}
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gflow-beige-dark/50 to-transparent z-10"></div>
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gflow-beige-dark/50 to-transparent z-10"></div>
           </div>
         </section>
 
@@ -293,9 +307,22 @@ export default function GFlowLanding() {
 }
 
 const TESTIMONIOS = [
-  { nombre: 'Colussi S.A.', rubro: 'Transporte y Logística', quote: 'Logramos un control exacto de nuestra flota y cuentas corrientes. La estabilidad del sistema en años de uso es increíble.' },
-  { nombre: 'Ponticelli Hnos. S.A.', rubro: 'Materiales de Construcción', quote: 'La facturación y el manejo de stock en el corralón se volvieron ágiles. Es un sistema pensado para el día a día.' },
-  { nombre: 'Algodonera Pinedo S.A.', rubro: 'Industria Textil / Agro', quote: 'Escalable y robusto. Nos permite manejar procesos complejos con una curva de aprendizaje mínima para el personal.' },
+  { nombre: 'W. H. Correa y Asociados', rubro: 'Estudio Contable - Consultora' },
+  { nombre: 'Tutto Porkys S.R.L', rubro: 'Frigorífico de porcinos' },
+  { nombre: 'Aníbal Moschen Hnos. SA.', rubro: 'Agropecuaria' },
+  { nombre: 'Ponticelli Hermanos S.A.', rubro: 'Ferretería y Mat. de Construcción' },
+  { nombre: 'Molino IMAN S.A.C.I.A', rubro: 'Molino de harina de trigo' },
+  { nombre: 'Vanfla S.A', rubro: 'Agropecuaria' },
+  { nombre: 'Nutrynor S.A.', rubro: 'Alimentos balanceados – Feed Lots' },
+  { nombre: 'Cerdos San Juan S.A.', rubro: 'Criaderos de Porcinos' },
+  { nombre: 'MKF S.R.L', rubro: 'Soluciones Financieras' },
+  { nombre: 'Algodonera Pinedo S.A.', rubro: 'Desmotadora' },
+  { nombre: 'David Comizzo Deportes', rubro: 'Indumentaria deportiva' },
+  { nombre: 'Dean SA', rubro: 'Agropecuaria' },
+  { nombre: 'Colussi S.A.', rubro: 'Transporte y Logística' },
+  { nombre: 'PorkTrucks S.A', rubro: 'Transporte' },
+  { nombre: 'Bu-Norte S.A.', rubro: 'Agropecuaria' },
+  { nombre: 'Col-Pi S.A.', rubro: 'Fabricante de matrices y autopartes' },
 ];
 
 const BENEFICIOS = [

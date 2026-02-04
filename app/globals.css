@@ -54,4 +54,50 @@
   .container {
     @apply max-w-7xl mx-auto px-6 lg:px-8;
   }
+
+  .animate-glow {
+    animation: glow 4s ease-in-out infinite alternate;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0% {
+      filter: drop-shadow(0 0 5px rgba(141, 179, 193, 0.4));
+    }
+
+    100% {
+      filter: drop-shadow(0 0 15px rgba(58, 91, 141, 0.6));
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .marquee-content {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 }
