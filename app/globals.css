@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gflow-beige: #f7f4d9;
+  --color-gflow-beige-dark: #f2edcf;
+  --color-gflow-blue: #23395d;
+  --color-gflow-blue-light: #3a5b8d;
+  --color-gflow-cyan: #8db3c1;
+  --color-gflow-text: #3a3a3a;
+
+  --font-inter: "Inter", sans-serif;
+  --font-work-sans: "Work Sans", sans-serif;
+}
+
+:root {
+  --background: var(--color-gflow-beige);
+  --foreground: var(--color-gflow-text);
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply font-inter antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-work-sans font-bold text-gflow-blue;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 active:scale-95;
+  }
+
+  .btn-primary {
+    @apply bg-gflow-blue text-white hover:bg-gflow-blue-light hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-whatsapp {
+    @apply bg-[#25D366] text-white hover:bg-[#128C7E] hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .card {
+    @apply bg-white p-8 rounded-xl border border-gflow-blue/5 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+}
