@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gflow-blue: #0A192F;
-  --color-gflow-blue-light: #112240;
-  --color-gflow-blue-vibrant: #23395d;
-  --color-gflow-celeste: #1EA3FB;
-  --color-gflow-text: #E6F1FF;
-  --color-gflow-text-muted: #8892B0;
-  
+  --color-gflow-beige: #f7f4d9;
+  --color-gflow-beige-dark: #f2edcf;
+  --color-gflow-blue: #23395d;
+  --color-gflow-blue-light: #3a5b8d;
+  --color-gflow-cyan: #8db3c1;
+  --color-gflow-text: #3a3a3a;
+
   --font-inter: "Inter", sans-serif;
   --font-work-sans: "Work Sans", sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: var(--color-gflow-blue);
+  --background: var(--color-gflow-beige);
+  --foreground: var(--color-gflow-text);
 }
 
 @layer base {
@@ -24,18 +24,23 @@
     @apply font-inter antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-work-sans font-bold text-gflow-blue;
   }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold transition-all duration-300 active:scale-95;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 active:scale-95;
   }
 
   .btn-primary {
-    @apply bg-gflow-blue text-white hover:bg-gflow-celeste hover:shadow-[0_0_20px_rgba(30,163,251,0.4)] hover:-translate-y-0.5;
+    @apply bg-gflow-blue text-white hover:bg-gflow-blue-light hover:shadow-lg hover:-translate-y-0.5;
   }
 
   .btn-whatsapp {
@@ -43,45 +48,56 @@
   }
 
   .card {
-    @apply bg-white p-6 rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-gflow-celeste/20;
+    @apply bg-white p-8 rounded-xl border border-gflow-blue/5 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
   .container {
     @apply max-w-7xl mx-auto px-6 lg:px-8;
   }
 
-  /* Antigravity Effects */
-  .hero-gradient {
-    background: radial-gradient(circle at 50% 50%, #112240 0%, #0A192F 100%);
-  }
-
-  .blob {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(30, 163, 251, 0.15) 0%, transparent 70%);
-    filter: blur(60px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .animate-blob {
-    animation: blob-float 20s infinite alternate;
-  }
-
-  @keyframes blob-float {
-    0% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(10%, 10%) scale(1.1); }
-    66% { transform: translate(-5%, 15%) scale(0.9); }
-    100% { transform: translate(0, 0) scale(1); }
+  .animate-glow {
+    animation: glow 4s ease-in-out infinite alternate;
   }
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
+  @keyframes glow {
+    0% {
+      filter: drop-shadow(0 0 5px rgba(141, 179, 193, 0.4));
+    }
+
+    100% {
+      filter: drop-shadow(0 0 15px rgba(58, 91, 141, 0.6));
+    }
+  }
+
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .marquee-content {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
 }
